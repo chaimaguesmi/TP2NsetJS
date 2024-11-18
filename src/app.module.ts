@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Cv } from './cv/entities/cv.entity';
 import { Skill } from './skills/entities/skill.entity';
+import { CrudService } from './serv-g/crud.service';
 
 @Module({
   imports: [

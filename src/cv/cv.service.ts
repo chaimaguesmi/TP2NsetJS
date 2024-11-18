@@ -26,15 +26,26 @@ export class CvService {
 
     return await this.cvRepository.save(newCv);
   }
-  async findAll(): Promise<Cv[]> {
+  /*async findAll(): Promise<Cv[]> {
     return this.cvRepository.find();
-  }
+  }*/
 
-  async findOne(id: number): Promise<Cv> {
+ /* async findOne(id: number): Promise<Cv> {
     return this.cvRepository.findOne({
       where: { id },  
     });
-  }
+  }*/
+    async findAll(): Promise<Cv[]> {
+      return this.cvRepository.find({
+        relations: ['user', 'skills'],  
+      });
+    }
+    async findOne(id: number): Promise<Cv> {
+      return this.cvRepository.findOne({
+        where: { id },
+        relations: ['user', 'skills'], 
+      });
+    }
 
   async update(id: number, updateCvDto: UpdateCvDto): Promise<Cv> {
     const cv = await this.cvRepository.findOne({ where: { id } });
